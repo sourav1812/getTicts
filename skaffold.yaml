@@ -1,13 +1,13 @@
-apiVersion: skaffold/v2alpha3
+apiVersion: skaffold/v4beta3
 kind: Config
 manifests:
- rawYaml:
- - ./infra/k8s/*
+  rawYaml:
+    - ./infra/k8s/*
 build:
   local:
     push: false
   artifacts:
-    - image: rallycoding/auth
+    - image: sourav1800/auth
       context: auth
       docker:
         dockerfile: Dockerfile

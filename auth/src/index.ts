@@ -1,9 +1,13 @@
-import express from 'express'
-import {json} from 'body-parser'
+const express = require("express");
 
 const app = express();
-app.use(json());
+app.use(express.json());
 
-app.listen(3000,()=>{
-    console.log("Listening on port 3000");
+app.get("/api/users/currentUser", (req: any, res:any) => {
+    console.log("Welcome ");
+    res.send("Hi ");
+});
+
+app.listen(5001,()=>{
+    console.log("Listening on port 5001fdg");
 })

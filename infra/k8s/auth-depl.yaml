@@ -13,11 +13,8 @@ spec:
     spec:
       containers:
       - name: auth
-        image: sourav/auth
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: sourav1800/auth
+        imagePullPolicy: Never
 
 ---
 apiVersion: v1
@@ -28,7 +25,5 @@ spec:
   selector:
     app: auth
   ports:
-  - name: auth
-    protocal: TCP
-    port: 3000
-    targetPort: 3000
+  - port: 5001
+    targetPort: 5001
