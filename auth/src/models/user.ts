@@ -24,6 +24,15 @@ const UserSchema = new Schema({
         type: String,
         required: true
     }
+},{
+    toJSON:{
+        transform(obj,ret){
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.password;
+            delete ret.__v
+        }
+    }
 })
 
 UserSchema.pre('save',async function(done){
