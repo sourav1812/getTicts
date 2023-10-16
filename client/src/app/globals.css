@@ -1,0 +1,25 @@
+body{
+    font-family: sans-serif;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+label{
+    margin-bottom: 5px;
+}
+
+.form-group{
+    margin-bottom: 10px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.mr-20{
+    margin-right: 20px;
+}

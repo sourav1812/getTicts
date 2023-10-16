@@ -7,6 +7,7 @@ import { signoutRouter } from './routes/signout';
 import { signinRouter } from './routes/signin';
 import { signupRouter } from './routes/signup';
 import { errorHandler } from './middlewares/error-handler';
+import { randomGenerator } from './routes/random';
 import { NotFound } from './errors/not-found';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(currentUserRouter)
 app.use(signupRouter)
 app.use(signinRouter)
 app.use(signoutRouter)
+app.use(randomGenerator)
 
 app.all("*",()=>{
     throw new NotFound()

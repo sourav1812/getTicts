@@ -1,11 +1,24 @@
+import { cache } from "react";
 import API from "./buildClient";
 
-export default async function getCurrentUser() {
+const getCurrentUser = cache(async()=> {
     try {
       const response = await API().get("api/users/currentUser");
       return response.data;
     } catch (err:any) {
-      console.error(err.message);
+      console.error("Error: ",err.message);
       
     }
+})
+
+export const getUserLogout = async()=> {
+  try {
+    const response = await API().get("api/users/signout");
+    return response.data;
+  } catch (err:any) {
+    console.error("Error: ",err.message);
+    
   }
+}
+
+export default getCurrentUser;

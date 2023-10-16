@@ -1,10 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import "bootstrap/dist/css/bootstrap.css"
-import { Inter } from 'next/font/google'
-import Header from '@components/header';
-
-const inter = Inter({ subsets: ['latin'] })
+import 'bootstrap/dist/css/bootstrap.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,9 +16,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <div className='container'>
-          <Header/>
+        {/* <MainLayout children={children}/> */}
         {children}
         </div>
       </body>

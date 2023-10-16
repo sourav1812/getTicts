@@ -1,22 +1,31 @@
+'use client'
+import useRequest from "hooks/useRequest";
+import Link from "next/link"
+import { useRouter } from "next/navigation";
 
-import API from "api/buildClient";
+function Header({currentUser}:any) {
+  const {push}  = useRouter();
 
-async function getData() {
-  try {
-    const response = await API().get("api/users/currentUser");
-    return response.data;
-  } catch (err:any) {
-    console.error(err.message);
+  const { doRequest, errors }:any = useRequest({
+    url: '/api/users/signout',
+    method: 'post',
+    onSuccess: ()=>push("/")
+  });
+
+   const onLogout = async ()=>{
+    console.log("sadghjsdg");
     
-  }
-}
+      await doRequest();
+   }
 
-async function Header() {
-    const {currentUser} = await getData();
-    console.log("Header currentUser",currentUser);
-    
   return (
-    <div>Header</div>
+    <nav className="header">
+      <Link href="/">Booking my tickets</Link>
+      {!currentUser ? <div>
+        <Link href="/auth/signin" className="mr-20">Sign in</Link>
+        <Link href="/auth/signup">Sign up</Link>
+      </div>: <button type="button" className="btn btn-link" onClick={onLogout}>Signout</button>}
+    </nav>
   )
 }
 

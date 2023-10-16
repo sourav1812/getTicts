@@ -3,6 +3,7 @@ import {useState} from 'react'
 import useRequest from 'hooks/useRequest'
 import TextInput from "@components/Inputs"
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const SignUp = () => {
   const [form,setForm] = useState({
@@ -44,6 +45,7 @@ const SignUp = () => {
         placeholder="Enter Password" label="Password"
       />
       <button type="submit" className="btn btn-primary">Submit</button>
+        <Link href="/auth/signin">Sign up</Link>
     </form>
   )
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 interface IProps {
     url: string;
     method: Method | undefined;
-    body: any;
+    body?: any;
     onSuccess: any
   }
 

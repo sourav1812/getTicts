@@ -13,7 +13,7 @@ const TextInput = props => {
         placeholder={placeholder}
         className="form-control"
       />
-      {/* <p>// place for errors</p> */}
+      {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
     </div>
   );
 };
