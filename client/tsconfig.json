@@ -26,6 +26,6 @@
       "@icons/*": ["icons/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/api/buildClient.js", "src/hooks/useRequest.js", "src/components/header/index.js", "src/api/user.js"],
   "exclude": ["node_modules"]
 }

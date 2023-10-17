@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
-import useRequest from '../../hooks/use-request';
+import useRequest from '../../hooks/useRequest';
+import { useRouter } from 'next/navigation';
 
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {push} = useRouter()
   const { doRequest, errors } = useRequest({
     url: '/api/users/signin',
     method: 'post',
@@ -12,7 +13,7 @@ export default () => {
       email,
       password
     },
-    onSuccess: () => Router.push('/')
+    onSuccess: () => push('/')
   });
 
   const onSubmit = async event => {
