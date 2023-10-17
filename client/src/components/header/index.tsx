@@ -1,32 +1,31 @@
-'use client'
-import useRequest from "hooks/useRequest";
-import Link from "next/link"
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
-function Header({currentUser}:any) {
-  const {push}  = useRouter();
-
-  const { doRequest, errors }:any = useRequest({
-    url: '/api/users/signout',
-    method: 'post',
-    onSuccess: ()=>push("/")
-  });
-
-   const onLogout = async ()=>{
-    console.log("sadghjsdg");
-    
-      await doRequest();
-   }
+export default ({ currentUser }:any) => {
+  const links = [
+    !currentUser && { label: 'Sign Up', href: '/auth/signup' },
+    !currentUser && { label: 'Sign In', href: '/auth/signin' },
+    currentUser && { label: 'Sign Out', href: '/auth/signout' },
+  ]
+    .filter((linkConfig) => linkConfig)
+    .map(({ label, href }) => {
+      return (
+        <li key={href} className="nav-item">
+          <Link className="nav-link" href={href}>
+            {label}
+          </Link>
+        </li>
+      );
+    });
 
   return (
-    <nav className="header">
-      <Link href="/">Booking my tickets</Link>
-      {!currentUser ? <div>
-        <Link href="/auth/signin" className="mr-20">Sign in</Link>
-        <Link href="/auth/signup">Sign up</Link>
-      </div>: <button type="button" className="btn btn-link" onClick={onLogout}>Signout</button>}
-    </nav>
-  )
-}
+    <nav className="navbar navbar-light bg-light">
+      <Link className="navbar-brand" href="/">
+        GitTix
+      </Link>
 
-export default Header
+      <div className="d-flex justify-content-end">
+        <ul className="nav d-flex align-items-center">{links}</ul>
+      </div>
+    </nav>
+  );
+};

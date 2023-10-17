@@ -1,6 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import 'bootstrap/dist/css/bootstrap.css'
+import Header from '@components/header'
+import getCurrentUser from 'api/user';
+export const revalidate = 10; //revalidate every 1hr seconds
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,12 +16,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode,
 }) {
+  const {currentUser}:any = await getCurrentUser();
 
   return (
     <html lang="en">
       <body>
         <div className='container'>
-        {/* <MainLayout children={children}/> */}
+        <Header 
+          currentUser={currentUser}
+          // id={id}
+          />
         {children}
         </div>
       </body>
