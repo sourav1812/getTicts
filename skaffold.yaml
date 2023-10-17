@@ -15,3 +15,15 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: sourav1800/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+          - src: 'src/**/*.tsx'
+            dest: .
+          - src: 'src/**/*.css'
+            dest: .
