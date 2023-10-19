@@ -4,14 +4,14 @@ import { useRouter } from 'next/navigation'
 import useRequest from 'hooks/useRequest'
 
 export default () => {
-    const {push} = useRouter();
+  const {push, refresh} = useRouter();
   const { doRequest } = useRequest({
     url: '/api/users/signout',
     method: 'post',
     body: {},
-    onSuccess: () => push('/')
+    onSuccess: () => {push('/'); refresh()}
   });
-
+  
   useEffect(() => {
     doRequest();
   }, []);

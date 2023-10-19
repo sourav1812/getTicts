@@ -6,9 +6,8 @@ import { currentUserRouter } from './routes/current-user';
 import { signoutRouter } from './routes/signout';
 import { signinRouter } from './routes/signin';
 import { signupRouter } from './routes/signup';
-import { errorHandler } from './middlewares/error-handler';
+import { errorHandler, NotFound } from '@ss_microservice_auth_service/common';
 import { randomGenerator } from './routes/random';
-import { NotFound } from './errors/not-found';
 
 const app = express();
 app.set('trust proxy',true)
