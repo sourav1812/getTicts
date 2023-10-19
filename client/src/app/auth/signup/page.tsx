@@ -6,18 +6,17 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 const SignUp = () => {
+  const {push, refresh} = useRouter();
   const [form,setForm] = useState({
     email: "",
     password: ""
   })
 
-  const {push} = useRouter()
-
   const { doRequest, errors }:any = useRequest({
     url: '/api/users/signup',
     method: 'post',
     body: form,
-    onSuccess: ()=>push("/")
+    onSuccess: ()=>{push("/"); refresh();}
   });
 
   const onSubmit = async (e: any) => {
