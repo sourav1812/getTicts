@@ -27,3 +27,11 @@ build:
             dest: .
           - src: 'src/**/*.css'
             dest: .
+    - image: sourav1800/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
