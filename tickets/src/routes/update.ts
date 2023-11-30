@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import { NotAuthorizedError, NotFound, RequestValidator, requireAuth } from "@ss_microservice_auth_service/common";
 import { Ticket } from '../models/ticket';
 import { body } from 'express-validator';
+import { TicketUpdatedPublisher } from '../events/publisher/ticket-updated';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -27,6 +29,13 @@ router.put('/api/tickets/:id',  requireAuth,[
     price
   })
   await ticket.save()
+
+  new TicketUpdatedPublisher(natsWrapper.client).publish({
+    id: ticket.id,
+    title: ticket.title,
+    price: ticket.price,
+    userId: ticket.userId
+  })
 
   res.send(ticket);
 });
